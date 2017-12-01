@@ -32,8 +32,20 @@
 ;;; Code:
 
 (require 'prelude-programming)
+(require 'smartparens-config)
 
 (prelude-require-packages '(elixir-mode alchemist))
+
+(defun prelude-elixir-mode-defaults ()
+  (alchemist-mode +1)
+  (paredit-mode +1)
+                                        ;(smartparens-strict-mode +1)
+  )
+
+(setq prelude-elixir-mode-hook 'prelude-elixir-mode-defaults)
+
+(add-hook 'elixir-mode-hook (lambda ()
+                             (run-hooks 'prelude-elixir-mode-hook)))
 
 (provide 'prelude-elixir)
 

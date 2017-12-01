@@ -37,7 +37,8 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-;(package-initialize)
+
+(package-initialize)
 
 (defvar current-user
   (getenv
@@ -144,5 +145,26 @@ by Prelude.")
 (prelude-eval-after-init
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'prelude-tip-of-the-day))
+
+
+(global-whitespace-mode t)
+
+;; (setq whitespace-display-mappings '(
+;;   (space-mark   ?\     [?\u00B7]     [?.])
+;;   (space-mark   ?\xA0  [?\u00A4]     [?_])
+;;   (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])))
+
+;; lines lines-tail newline trailing space-before-tab space-afte-tab empty
+;; indentation-space indentation indentation-tab tabs spaces
+
+(setq set-fill-column 120)
+
+;(setq whitespace-style '(face space-mark tab-mark newline-mark) )
+
+(setq whitespace-line-column 120)
+
+;; Zoom window
+(require 'zoom-window)
+(global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
 
 ;;; init.el ends here

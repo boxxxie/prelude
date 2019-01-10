@@ -84,7 +84,7 @@
     smart-mode-line
     smartparens
     smartrep
-    undo-tree
+    ;;undo-tree
     volatile-highlights
     which-key
     zenburn-theme

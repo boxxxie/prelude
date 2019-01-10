@@ -50,8 +50,29 @@
   '(progn
      (setq nrepl-log-messages t)
 
-     (add-hook 'cider-mode-hook 'eldoc-mode)
+     ;;disable nrepl popup window on cider-jack-in
+     (setq cider-repl-pop-to-buffer-on-connect nil)
+     
+     ;;(setq cider-pprint-fn "fipp.clojure/pprint")
+     ;;(setq cider-pprint-fn "pprint")
+     ;;(setq cider-pprint-fn 'pprint)
+     ;;(setq cider-pprint-fn "clojure.pprint/pprint")
 
+     (setq cider-repl-use-pretty-printing t)
+     
+     (setq cider-save-file-on-load t) ;;remove save prompt
+     
+     (add-hook 'cider-mode-hook #'eldoc-mode)
+
+     ;; allows multi-line mini-buffer eldoc
+     (setq eldoc-echo-area-use-multiline-p 'truncate-sym-name-if-fit)
+
+     (setq cider-overlays-use-font-lock t)
+
+     (setq cider-prompt-for-symbol nil)
+
+     (setq nrepl-hide-special-buffers t)
+     
      (defun prelude-cider-repl-mode-defaults ()
        (subword-mode +1)
        (run-hooks 'prelude-interactive-lisp-coding-hook))

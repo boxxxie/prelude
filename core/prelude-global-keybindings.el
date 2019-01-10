@@ -111,6 +111,10 @@
 (global-set-key (kbd "s-.") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "s-w") 'ace-window)
 
+;;remove unwanted keybindings
+(global-unset-key (kbd "<insertchar>")) ;;overwrite mode
+(global-unset-key (kbd "<insert>"))     ;;overwrite mode
+
 (provide 'prelude-global-keybindings)
 
 ;;; prelude-global-keybindings.el ends here

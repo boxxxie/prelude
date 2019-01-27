@@ -38,7 +38,7 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-log-done t)
 
-(defun prelude-org-mode-defaults ()
+(defun prelude-org-mode-hook ()
   (let ((oldmap (cdr (assoc 'prelude-mode minor-mode-map-alist)))
         (newmap (make-sparse-keymap)))
     (set-keymap-parent newmap oldmap)
@@ -46,12 +46,21 @@
     (define-key newmap (kbd "C-c -") nil)
     (define-key newmap (kbd "C-a") nil)
     (make-local-variable 'minor-mode-overriding-map-alist)
+    (turn-off-filladapt-mode) ;; conflict with this lib https://orgmode.org/manual/Conflicts.html
+    ;;(org-indent-mode t) ;;did setq-default instead
     (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist))
 )
 
-(setq prelude-org-mode-hook 'prelude-org-mode-defaults)
+;;(setq prelude-org-mode-hook 'prelude-org-mode-defaults)
 
 (add-hook 'org-mode-hook (lambda () (run-hooks 'prelude-org-mode-hook)))
+;;(add-hook 'org-mode-hook 'org-indent-mode)
+
+;; Make windmove work in Org mode:
+;; (add-hook 'org-shiftup-final-hook 'windmove-up)
+;; (add-hook 'org-shiftleft-final-hook 'windmove-left)
+;; (add-hook 'org-shiftdown-final-hook 'windmove-down)
+;; (add-hook 'org-shiftright-final-hook 'windmove-right)
 
 (provide 'prelude-org)
 

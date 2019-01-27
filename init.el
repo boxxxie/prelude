@@ -40,9 +40,15 @@
 
 (package-initialize)
 
-(defvar current-user
-  (getenv
-   (if (equal system-type 'windows-nt) "USERNAME" "USER")))
+(require 'filladapt)
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+(setq-default filladapt-mode t)
+
+;; why am i doing this?
+(defvar current-user (getenv "USER"))
 
 (message "Prelude is powering up... Be patient, Master %s!" current-user)
 
@@ -154,8 +160,65 @@ by Prelude.")
 (setq prelude-whitespace nil)
 (setq global-whitespace-cleanup-mode nil)
 
+;; un-repl clojure repl
 (let ((spiral-dir "/path/to/your/copy/of/spiral/"))
   (add-to-list 'load-path spiral-dir)
   (add-to-list 'load-path (expand-file-name "parseclj" spiral-dir))
   (require 'spiral))
 
+(auto-save-mode t)
+(auto-save-visited-mode t)
+
+;; not 100% sure i like this
+;; currently M-S-<tab> binding is not working
+(use-package buffer-flip
+             :ensure t
+             :bind  (
+                     ("M-<tab>"   . buffer-flip-foward)
+                     ("M-S-<tab>" . buffer-flip-backward)
+                     :map buffer-flip-map
+                     ("M-<tab>"   . buffer-flip-forward)
+                     ("M-S-<tab>" . buffer-flip-backward)
+                     ("M-ESC"     . buffer-flip-abort))
+             :config
+             (setq buffer-flip-skip-patterns
+                   '("^\\*helm\\b"
+                     "^\\*swiper\\*$")))
+
+(use-package window-jump
+  ;;wj-jump-frames, when set to t, will jump to windows in other frames as well as the current frame. It defaults to nil.
+
+  :init
+  (add-hook 'org-shiftup-final-hook 'window-jump-up)
+  (add-hook 'org-shiftleft-final-hook 'window-jump-left)
+  (add-hook 'org-shiftdown-final-hook 'window-jump-down)
+  (add-hook 'org-shiftright-final-hook 'window-jump-right)
+
+  ;; functions to bind
+  :bind (
+         ("S-<left>"  . window-jump-left)
+         ("S-<right>" . window-jump-right)
+         ("S-<up>"    . window-jump-up)
+         ("S-<down>"  . window-jump-down)
+
+         ;; intention was to have these work in org-mode, however
+         ;; org-mode does S behaviour on C-S presses :(
+         ;; ("C-S-<left>"  . window-jump-left)
+         ;; ("C-S-<right>" . window-jump-right)
+         ;; ("C-S-<up>"    . window-jump-up)
+         ;; ("C-S-<down>"  . window-jump-down)
+         )
+  )
+
+;;https://vxlabs.com/2014/12/04/inline-graphviz-dot-evaluation-for-graphs-using-emacs-org-mode-and-org-babel/
+(org-babel-do-load-languages 'org-babel-load-languages '((dot . t)))
+
+;; doesn't seem to work
+;; (use-package minimal-session-saver
+;;   :init (minimal-session-saver-install-aliases)
+;;   )
+
+
+;;(setq-default org-indent-mode t)
+(add-hook 'org-mode-hook 'org-indent-mode)
+(display-time-mode)

@@ -56,7 +56,7 @@
     (define-key map (kbd "C-M-z") 'crux-indent-defun)
     (define-key map (kbd "C-c u") 'crux-view-url)
     (define-key map (kbd "C-c e") 'crux-eval-and-replace)
-    (define-key map (kbd "C-c s") 'crux-swap-windows)
+    ;;(define-key map (kbd "C-c s") 'crux-swap-windows)
     (define-key map (kbd "C-c D") 'crux-delete-file-and-buffer)
     (define-key map (kbd "C-c d") 'crux-duplicate-current-line-or-region)
     (define-key map (kbd "C-c M-d") 'crux-duplicate-and-comment-current-line-or-region)
@@ -66,8 +66,9 @@
     (define-key map (kbd "C-c TAB") 'crux-indent-rigidly-and-copy-to-clipboard)
     (define-key map (kbd "C-c I") 'crux-find-user-init-file)
     (define-key map (kbd "C-c S") 'crux-find-shell-init-file)
-    (define-key map (kbd "C-c i") 'imenu-anywhere)
+    ;;(define-key map (kbd "C-c i") 'imenu-anywhere)
     ;; extra prefix for projectile
+    (define-key map (kbd "C-c p") 'projectile-command-map)
     (define-key map (kbd "s-p") 'projectile-command-map)
     ;; make some use of the Super key
     (define-key map (kbd "s-g") 'god-local-mode)

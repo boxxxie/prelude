@@ -39,7 +39,15 @@
   '(progn
      (defun prelude-clojure-mode-defaults ()
        (subword-mode +1)
-       (run-hooks 'prelude-lisp-coding-hook))
+       (run-hooks 'prelude-lisp-coding-hook)
+       (setq fill-column 120)
+       ;;(auto-fill-mode)
+       
+       ;;TODO: there were a few problems with sayid.
+       ;; using cider trace mode was good enough
+       ;; need to come back to this in the future and see if i can fix it
+       ;;(sayid-setup-package)
+       )
 
      (setq prelude-clojure-mode-hook 'prelude-clojure-mode-defaults)
 
@@ -52,17 +60,15 @@
 
      ;;disable nrepl popup window on cider-jack-in
      (setq cider-repl-pop-to-buffer-on-connect nil)
-     
-     ;;(setq cider-pprint-fn "fipp.clojure/pprint")
-     ;;(setq cider-pprint-fn "pprint")
-     ;;(setq cider-pprint-fn 'pprint)
-     ;;(setq cider-pprint-fn "clojure.pprint/pprint")
+
+     (setq cider-pprint-fn "fipp.clojure/pprint")
 
      (setq cider-repl-use-pretty-printing t)
-     
+
      (setq cider-save-file-on-load t) ;;remove save prompt
-     
-     (add-hook 'cider-mode-hook #'eldoc-mode)
+
+     (setq cider-mode-hook #'eldoc-mode)
+     ;;(add-hook 'cider-mode-hook #'eldoc-mode)
 
      ;; allows multi-line mini-buffer eldoc
      (setq eldoc-echo-area-use-multiline-p 'truncate-sym-name-if-fit)
@@ -72,7 +78,7 @@
      (setq cider-prompt-for-symbol nil)
 
      (setq nrepl-hide-special-buffers t)
-     
+
      (defun prelude-cider-repl-mode-defaults ()
        (subword-mode +1)
        (run-hooks 'prelude-interactive-lisp-coding-hook))

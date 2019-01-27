@@ -109,7 +109,9 @@
 
 (global-set-key (kbd "C-c j") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "s-.") 'avy-goto-word-or-subword-1)
-(global-set-key (kbd "s-w") 'ace-window)
+
+;; never really used ace-window and the keybinding is in my WM anyway
+;;(global-set-key (kbd "s-w") 'ace-window)
 
 ;;remove unwanted keybindings
 (global-unset-key (kbd "<insertchar>")) ;;overwrite mode

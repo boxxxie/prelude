@@ -152,6 +152,7 @@ by Prelude.")
 (require 'zoom-window)
 (global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
 
+
 (setq auto-save-visited-mode 't)
 ;;; init.el ends here
 
@@ -222,3 +223,5 @@ by Prelude.")
 ;;(setq-default org-indent-mode t)
 (add-hook 'org-mode-hook 'org-indent-mode)
 (display-time-mode)
+
+(global-set-key (kbd "C-z") nil) ;; maybe this could be undo

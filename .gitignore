@@ -5,7 +5,6 @@ recentf
 savehist
 saveplace
 eshell
-elpa
 el-get
 semanticdb
 url
@@ -15,7 +14,6 @@ custom.el
 places
 .smex-items
 savefile/
-/prelude-modules.el
 projectile-bookmarks.eld
 session*
 .cask

@@ -36,6 +36,8 @@
 (prelude-require-packages '(js2-mode json-mode))
 
 (require 'js2-mode)
+(require 'nodejs-repl)
+
 
 (add-to-list 'auto-mode-alist '("\\.js\\'"    . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.pac\\'"   . js2-mode))
@@ -46,8 +48,20 @@
      (defun prelude-js-mode-defaults ()
        ;; electric-layout-mode doesn't play nice with smartparens
        (setq-local electric-layout-rules '((?\; . after)))
-       (setq mode-name "JS2")
-       (js2-imenu-extras-mode +1))
+       (setq mode-name "JS2 + nodejs-repl")
+       (js2-imenu-extras-mode +1)
+
+       ;; nodejs-repl keybindings
+       (define-key js-mode-map (kbd "C-x C-e") 'nodejs-repl-send-last-expression)
+       (define-key js-mode-map (kbd "C-c C-j") 'nodejs-repl-send-line)
+       (define-key js-mode-map (kbd "C-c C-r") 'nodejs-repl-send-region)
+       (define-key js-mode-map (kbd "C-c C-l") 'nodejs-repl-load-file)
+       (define-key js-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl)
+
+       (smartparens-global-strict-mode)
+       ;; no
+       ;;(rainbow-identifiers-mode) ;; lawl, why i do this?
+       )
 
      (setq prelude-js-mode-hook 'prelude-js-mode-defaults)
 

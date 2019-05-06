@@ -51,6 +51,9 @@
        (setq mode-name "JS2 + nodejs-repl")
        (js2-imenu-extras-mode +1)
 
+       (setq js2-basic-offset 2)
+       (js2-highlight-unused-variables-mode)
+
        ;; nodejs-repl keybindings
        (define-key js-mode-map (kbd "C-x C-e") 'nodejs-repl-send-last-expression)
        (define-key js-mode-map (kbd "C-c C-j") 'nodejs-repl-send-line)
@@ -59,6 +62,7 @@
        (define-key js-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl)
 
        (smartparens-global-strict-mode)
+       (rainbow-mode)
        ;; no
        ;;(rainbow-identifiers-mode) ;; lawl, why i do this?
        )

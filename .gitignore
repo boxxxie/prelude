@@ -24,3 +24,4 @@ tramp
 network-security.data
 ac-comphist.dat
 .stignore
+elpa/

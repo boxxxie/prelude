@@ -49,7 +49,9 @@
        ;; electric-layout-mode doesn't play nice with smartparens
        (setq-local electric-layout-rules '((?\; . after)))
        (setq mode-name "JS2 + nodejs-repl")
+       (setq js2-basic-offset 2)
        (js2-imenu-extras-mode +1)
+       (setq js2-strict-missing-semi-warning nil)
 
        (setq js2-basic-offset 2)
        (js2-highlight-unused-variables-mode)

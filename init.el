@@ -153,7 +153,7 @@ by Prelude.")
 (global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
 
 
-(setq auto-save-visited-mode 't)
+
 ;;; init.el ends here
 
 ;; fuck whitespace shit
@@ -167,8 +167,10 @@ by Prelude.")
   (add-to-list 'load-path (expand-file-name "parseclj" spiral-dir))
   (require 'spiral))
 
-(auto-save-mode t)
-(auto-save-visited-mode t)
+;; (auto-save-mode t)
+;; (auto-save-visited-mode t)
+(setq auto-save-mode t)
+(setq auto-save-visited-mode t)
 
 ;; not 100% sure i like this
 ;; currently M-S-<tab> binding is not working
